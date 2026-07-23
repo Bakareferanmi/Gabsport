@@ -1,17 +1,10 @@
-const featured = {
-  title: "Champions League Final Set: Everything You Need to Know",
-  excerpt: "Two giants of European football collide this weekend in a match that could redefine both clubs' legacies.",
-  category: "Football",
-};
-
-const articles = [
-  { title: "Transfer Window Winners and Losers", category: "Football" },
-  { title: "NBA Playoff Race Heats Up in the West", category: "Basketball" },
-  { title: "Rising Stars to Watch This Season", category: "Football" },
-  { title: "Behind the Scenes: A Coach's Matchday Routine", category: "More" },
-];
+import { articles } from './data/articles';
+import ArticleCard from './components/ArticleCard';
 
 export default function Home() {
+  const featured = articles[0];
+  const rest = articles.slice(1);
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
       <section className="mb-20">
@@ -25,11 +18,8 @@ export default function Home() {
       <section>
         <h2 className="text-sm uppercase tracking-widest text-gray-400 mb-6">Latest</h2>
         <div className="grid md:grid-cols-2 gap-x-10 gap-y-10">
-          {articles.map((a, i) => (
-            <article key={i} className="border-b border-gray-100 pb-6">
-              <span className="text-xs uppercase tracking-widest text-gray-400">{a.category}</span>
-              <h3 className="text-lg font-medium mt-2">{a.title}</h3>
-            </article>
+          {rest.map((a) => (
+            <ArticleCard key={a.slug} article={a} />
           ))}
         </div>
       </section>
