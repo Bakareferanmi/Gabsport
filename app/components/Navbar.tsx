@@ -26,6 +26,9 @@ export default function Navbar() {
       {open && (
         <div className="border-t border-gray-100 bg-white">
           <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-3 text-sm text-gray-600">
+            <Link href="/live-scores" onClick={() => setOpen(false)} className="hover:text-black transition-colors">Live Scores</Link>
+            <Link href="/results" onClick={() => setOpen(false)} className="hover:text-black transition-colors">Results</Link>
+            <Link href="/table" onClick={() => setOpen(false)} className="hover:text-black transition-colors">League Table</Link>
             <Link href="/more" onClick={() => setOpen(false)} className="hover:text-black transition-colors">More</Link>
             <Link href="/privacy-policy" onClick={() => setOpen(false)} className="hover:text-black transition-colors">Privacy Policy</Link>
             <Link href="/terms-of-service" onClick={() => setOpen(false)} className="hover:text-black transition-colors">Terms of Service</Link>
