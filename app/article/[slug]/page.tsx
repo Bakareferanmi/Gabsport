@@ -1,6 +1,7 @@
 import { Article } from '../../data/articles';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en-US', {
@@ -14,6 +15,33 @@ async function getArticle(slug: string): Promise<Article | null> {
   });
   if (!res.ok) return null;
   return res.json();
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await getArticle(slug);
+  if (!article) return { title: 'Article not found | gabsport' };
+
+  return {
+    title: `${article.title} | gabsport`,
+    description: article.excerpt,
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      images: [article.image],
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.excerpt,
+      images: [article.image],
+    },
+  };
 }
 
 export default async function ArticlePage({
