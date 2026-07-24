@@ -13,6 +13,18 @@ const poppins = Poppins({
 export const metadata = {
   title: 'gabsport',
   description: 'Your daily sports coverage, reactions, and analysis.',
+  openGraph: {
+    title: 'gabsport',
+    description: 'Your daily sports coverage, reactions, and analysis.',
+    images: ['/logo.png'],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'gabsport',
+    description: 'Your daily sports coverage, reactions, and analysis.',
+    images: ['/logo.png'],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
