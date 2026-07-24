@@ -1,4 +1,4 @@
-import { articles } from '../../data/articles';
+import { Article } from '../../data/articles';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
@@ -8,8 +8,16 @@ function formatDate(dateStr: string) {
   });
 }
 
-export default function ArticlePage({ params }: { params: { slug: string } }) {
-  const article = articles.find((a) => a.slug === params.slug);
+async function getArticle(slug: string): Promise<Article | null> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/articles/${slug}`, {
+    next: { revalidate: 60 },
+  });
+  if (!res.ok) return null;
+  return res.json();
+}
+
+export default async function ArticlePage({ params }: { params: { slug: string } }) {
+  const article = await getArticle(params.slug);
   if (!article) return notFound();
 
   return (
