@@ -6,9 +6,9 @@ export default function TermsOfService() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
       <h1 className="text-3xl font-semibold mb-2">Terms of Service</h1>
-      <p className="text-sm text-gray-400 mb-10">Last updated: July 24, 2026</p>
+      <p className="text-sm text-gray-500 mb-10">Last updated: July 24, 2026</p>
 
-      <div className="space-y-8 text-gray-700 leading-relaxed">
+      <div className="space-y-8 text-gray-800 leading-relaxed">
         <section>
           <h2 className="text-lg font-semibold mb-2">1. Acceptance of Terms</h2>
           <p>By accessing and using gabsport, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our website.</p>
