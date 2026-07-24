@@ -12,7 +12,7 @@ export default function Navbar() {
     <nav className="border-b border-gray-100 sticky top-0 bg-white/90 backdrop-blur-sm z-50">
       <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/">
-          <Image src="/logo.png" alt="gabsport" width={40} height={40} className="object-contain" />
+          <Image src="/logo.png" alt="gabsport" width={160} height={160} className="object-contain -my-6" />
         </Link>
         <div className="flex items-center gap-6 text-sm text-gray-600">
           <Link href="/football" className="hover:text-black transition-colors">Football</Link>
