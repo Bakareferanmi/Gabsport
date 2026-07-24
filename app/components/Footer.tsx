@@ -12,6 +12,7 @@ export default function Footer() {
           <Link href="/contact" className="hover:text-black transition-colors">Contact Us</Link>
         </div>
         <span>© {new Date().getFullYear()} gabsport</span>
+        <span>Built with ♥️ by BeepeeLabs</span>
       </div>
     </footer>
   );
