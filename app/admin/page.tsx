@@ -29,7 +29,8 @@ export default function Admin() {
         return;
       }
       if (!res.ok) {
-        setStatus('Something went wrong.');
+        const errText = await res.text();
+        setStatus(`Error ${res.status}: ${errText}`);
         return;
       }
 
@@ -39,8 +40,8 @@ export default function Admin() {
       setExcerpt('');
       setContent('');
       setImage('');
-    } catch {
-      setStatus('Network error.');
+    } catch (err) {
+      setStatus(`Network error: ${err instanceof Error ? err.message : String(err)}`);
     }
   }
 
