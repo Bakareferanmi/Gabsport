@@ -1,7 +1,15 @@
-import { articles } from './data/articles';
 import ArticleCard from './components/ArticleCard';
+import { Article } from './data/articles';
 
-export default function Home() {
+async function getArticles(): Promise<Article[]> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/articles`, {
+    next: { revalidate: 60 },
+  });
+  return res.json();
+}
+
+export default async function Home() {
+  const articles = await getArticles();
   const featured = articles[0];
   const rest = articles.slice(1);
 
