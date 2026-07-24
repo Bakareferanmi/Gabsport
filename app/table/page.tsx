@@ -49,26 +49,40 @@ export default function LeagueTable() {
       ) : standings.length === 0 ? (
         <p className="text-gray-400">No table data available.</p>
       ) : (
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="text-left text-gray-400 border-b border-gray-100">
-              <th className="py-2">#</th>
-              <th className="py-2">Team</th>
-              <th className="py-2 text-center">P</th>
-              <th className="py-2 text-center">Pts</th>
-            </tr>
-          </thead>
-          <tbody>
-            {standings.map((s: any) => (
-              <tr key={s.team.id} className="border-b border-gray-50">
-                <td className="py-2">{s.position}</td>
-                <td className="py-2">{s.team.name}</td>
-                <td className="py-2 text-center">{s.playedGames}</td>
-                <td className="py-2 text-center font-medium">{s.points}</td>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm min-w-[560px]">
+            <thead>
+              <tr className="text-left text-gray-400 border-b border-gray-100">
+                <th className="py-2 pr-2">#</th>
+                <th className="py-2 pr-2">Team</th>
+                <th className="py-2 text-center px-1">P</th>
+                <th className="py-2 text-center px-1">W</th>
+                <th className="py-2 text-center px-1">D</th>
+                <th className="py-2 text-center px-1">L</th>
+                <th className="py-2 text-center px-1">GF</th>
+                <th className="py-2 text-center px-1">GA</th>
+                <th className="py-2 text-center px-1">GD</th>
+                <th className="py-2 text-center px-1 font-medium">Pts</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {standings.map((s: any) => (
+                <tr key={s.team.id} className="border-b border-gray-50">
+                  <td className="py-2 pr-2">{s.position}</td>
+                  <td className="py-2 pr-2">{s.team.name}</td>
+                  <td className="py-2 text-center px-1">{s.playedGames}</td>
+                  <td className="py-2 text-center px-1">{s.won}</td>
+                  <td className="py-2 text-center px-1">{s.draw}</td>
+                  <td className="py-2 text-center px-1">{s.lost}</td>
+                  <td className="py-2 text-center px-1">{s.goalsFor}</td>
+                  <td className="py-2 text-center px-1">{s.goalsAgainst}</td>
+                  <td className="py-2 text-center px-1">{s.goalDifference}</td>
+                  <td className="py-2 text-center px-1 font-medium">{s.points}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
