@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { footballSubcategories } from '../data/articles';
 
 export default function Admin() {
   const [secret, setSecret] = useState('');
@@ -8,6 +9,7 @@ export default function Admin() {
   const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('Football');
+  const [subcategory, setSubcategory] = useState('');
   const [image, setImage] = useState('');
   const [author, setAuthor] = useState('Feranmi Bakare');
   const [status, setStatus] = useState('');
@@ -21,7 +23,15 @@ export default function Admin() {
           'Content-Type': 'application/json',
           'x-admin-secret': secret,
         },
-        body: JSON.stringify({ title, excerpt, content, category, image, author }),
+        body: JSON.stringify({
+          title,
+          excerpt,
+          content,
+          category,
+          subcategory: category === 'Football' ? subcategory : null,
+          image,
+          author,
+        }),
       });
 
       if (res.status === 401) {
@@ -40,6 +50,7 @@ export default function Admin() {
       setExcerpt('');
       setContent('');
       setImage('');
+      setSubcategory('');
     } catch (err) {
       setStatus(`Network error: ${err instanceof Error ? err.message : String(err)}`);
     }
@@ -87,6 +98,20 @@ export default function Admin() {
           <option value="Basketball">Basketball</option>
           <option value="More">More</option>
         </select>
+
+        {category === 'Football' && (
+          <select
+            value={subcategory}
+            onChange={(e) => setSubcategory(e.target.value)}
+            className="w-full border border-gray-200 rounded-lg px-4 py-3"
+          >
+            <option value="">Select subsection</option>
+            {footballSubcategories.map((s) => (
+              <option key={s.slug} value={s.slug}>{s.label}</option>
+            ))}
+          </select>
+        )}
+
         <input
           type="text"
           placeholder="Image URL"
