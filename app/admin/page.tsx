@@ -52,7 +52,8 @@ export default function Admin() {
       });
 
       if (!res.ok) {
-        setStatus('Image upload failed.');
+        const errText = await res.text();
+        setStatus(`Image upload failed: ${res.status} — ${errText}`);
         setUploading(false);
         return;
       }
@@ -60,8 +61,8 @@ export default function Admin() {
       const data = await res.json();
       setImage(data.url);
       setStatus('Image uploaded.');
-    } catch {
-      setStatus('Image upload error.');
+    } catch (err) {
+      setStatus(`Image upload error: ${err instanceof Error ? err.message : String(err)}`);
     } finally {
       setUploading(false);
     }
@@ -232,7 +233,7 @@ export default function Admin() {
             accept="image/*"
             onChange={handleImageUpload}
             disabled={uploading}
-            className="w-full text-sm text-gray-600 dark:text-gray-300"
+            className="w-full text-sm text-gray-600 dark:text-gray-300 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-black file:text-white dark:file:bg-white dark:file:text-black file:cursor-pointer hover:file:opacity-90"
           />
           {image && (
             <img src={image} alt="Preview" className="mt-3 w-full h-40 object-cover rounded-lg" />
