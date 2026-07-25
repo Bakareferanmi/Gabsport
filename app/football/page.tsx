@@ -21,7 +21,7 @@ export default async function Football() {
           <Link
             key={s.slug}
             href={`/football/${s.slug}`}
-            className="text-xs uppercase tracking-widest border border-gray-200 rounded-full px-4 py-2 text-gray-600 hover:border-black hover:text-black transition-colors"
+            className="text-xs uppercase tracking-widest border border-gray-200 rounded-full px-4 py-2 text-gray-600 hover:border-black hover:text-black hover:bg-gray-50 transition-colors"
           >
             {s.label}
           </Link>

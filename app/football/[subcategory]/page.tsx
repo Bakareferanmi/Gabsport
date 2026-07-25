@@ -27,7 +27,23 @@ export default async function FootballSubcategory({
       <Link href="/football" className="text-xs uppercase tracking-widest text-gray-400 hover:text-black transition-colors">
         ← Football
       </Link>
-      <h1 className="text-3xl font-semibold mt-3 mb-10">{match.label}</h1>
+      <h1 className="text-3xl font-semibold mt-3 mb-6">{match.label}</h1>
+
+      <div className="flex flex-wrap gap-2 mb-10">
+        {footballSubcategories.map((s) => (
+          <a
+            key={s.slug}
+            href={`/football/${s.slug}`}
+            className={`text-xs uppercase tracking-widest border rounded-full px-4 py-2 transition-colors ${
+              s.slug === subcategory
+                ? 'bg-black text-white border-black'
+                : 'border-gray-200 text-gray-600 hover:border-black hover:text-black'
+            }`}
+          >
+            {s.label}
+          </a>
+        ))}
+      </div>
 
       {articles.length === 0 ? (
         <p className="text-gray-400">No articles yet in this section.</p>
