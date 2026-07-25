@@ -12,6 +12,7 @@ const menuLinks = [
   { href: '/results', label: 'Results' },
   { href: '/table', label: 'League Table' },
   { href: '/betting-tips', label: 'Betting Tips' },
+  { href: '/prediction-market', label: 'Prediction Market' },
   { href: '/more', label: 'More' },
   { href: '/privacy-policy', label: 'Privacy Policy' },
   { href: '/terms-of-service', label: 'Terms of Service' },
