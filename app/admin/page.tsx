@@ -34,20 +34,16 @@ export default function Admin() {
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
-    if (!secret) {
-      setStatus('Enter admin password first.');
-      return;
-    }
 
     setUploading(true);
     setStatus('Uploading image...');
     try {
       const formData = new FormData();
-      formData.append('image', file);
+      formData.append('file', file);
+      formData.append('upload_preset', 'gabsport_uploads');
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/upload-image`, {
+      const res = await fetch('https://api.cloudinary.com/v1_1/jhayatelier/image/upload', {
         method: 'POST',
-        headers: { 'x-admin-secret': secret },
         body: formData,
       });
 
@@ -59,7 +55,7 @@ export default function Admin() {
       }
 
       const data = await res.json();
-      setImage(data.url);
+      setImage(data.secure_url);
       setStatus('Image uploaded.');
     } catch (err) {
       setStatus(`Image upload error: ${err instanceof Error ? err.message : String(err)}`);
