@@ -68,7 +68,17 @@ export default async function ArticlePage({
         <Image src={article.image} alt={article.title} fill className="object-cover" />
       </div>
 
-      <p className="text-gray-700 dark:text-gray-200 leading-relaxed">{article.content}</p>
+      <div className="text-gray-700 dark:text-gray-200 leading-relaxed space-y-4">
+        {article.content.split('\n').map((line, i) =>
+          line.trim().startsWith('>') ? (
+            <blockquote key={i} className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic text-gray-600 dark:text-gray-400">
+              {line.trim().replace(/^>\s*/, '')}
+            </blockquote>
+          ) : line.trim() ? (
+            <p key={i}>{line}</p>
+          ) : null
+        )}
+      </div>
     </div>
   );
 }
