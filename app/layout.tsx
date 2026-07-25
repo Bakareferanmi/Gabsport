@@ -32,7 +32,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body className="font-sans text-gray-900 antialiased bg-white">
+      <body className="font-sans text-gray-900 dark:text-gray-100 antialiased bg-white dark:bg-black">
         <Navbar />
         <main>{children}</main>
         <Footer />
