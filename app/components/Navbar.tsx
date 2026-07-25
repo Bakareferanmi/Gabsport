@@ -30,6 +30,7 @@ export default function Navbar() {
             <Link href="/fixtures" onClick={() => setOpen(false)} className="hover:text-black transition-colors">Fixtures</Link>
             <Link href="/results" onClick={() => setOpen(false)} className="hover:text-black transition-colors">Results</Link>
             <Link href="/table" onClick={() => setOpen(false)} className="hover:text-black transition-colors">League Table</Link>
+            <Link href="/betting-tips" onClick={() => setOpen(false)} className="hover:text-black transition-colors">Betting Tips</Link>
             <Link href="/more" onClick={() => setOpen(false)} className="hover:text-black transition-colors">More</Link>
             <Link href="/privacy-policy" onClick={() => setOpen(false)} className="hover:text-black transition-colors">Privacy Policy</Link>
             <Link href="/terms-of-service" onClick={() => setOpen(false)} className="hover:text-black transition-colors">Terms of Service</Link>

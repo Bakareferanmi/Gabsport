@@ -96,6 +96,7 @@ export default function Admin() {
         >
           <option value="Football">Football</option>
           <option value="Basketball">Basketball</option>
+          <option value="Betting Tips">Betting Tips</option>
           <option value="More">More</option>
         </select>
 
