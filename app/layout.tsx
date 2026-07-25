@@ -12,6 +12,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://gabsport.vercel.app'),
   title: 'gabsport',
   description: 'Your daily sports coverage, reactions, and analysis.',
   openGraph: {
