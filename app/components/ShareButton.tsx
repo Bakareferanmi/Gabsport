@@ -25,7 +25,7 @@ export default function ShareButton({ title, excerpt }: { title: string; excerpt
     <button
       onClick={handleShare}
       aria-label="Share article"
-      className="flex items-center gap-2 text-sm text-gray-500 hover:text-black transition-colors shrink-0"
+      className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors shrink-0"
     >
       <Share2 size={18} />
       {copied ? 'Copied!' : 'Share'}
