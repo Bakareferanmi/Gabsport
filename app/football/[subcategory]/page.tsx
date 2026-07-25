@@ -43,6 +43,19 @@ export default async function FootballSubcategory({
             {s.label}
           </a>
         ))}
+        <span className="w-px bg-gray-200 mx-1" />
+        <Link
+          href="/betting-tips"
+          className="text-xs uppercase tracking-widest border border-gray-200 rounded-full px-4 py-2 text-gray-600 hover:border-black hover:text-black transition-colors"
+        >
+          Betting Tips
+        </Link>
+        <Link
+          href="/prediction-market"
+          className="text-xs uppercase tracking-widest border border-gray-200 rounded-full px-4 py-2 text-gray-600 hover:border-black hover:text-black transition-colors"
+        >
+          Prediction Market
+        </Link>
       </div>
 
       {articles.length === 0 ? (

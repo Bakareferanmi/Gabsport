@@ -26,6 +26,19 @@ export default async function Football() {
             {s.label}
           </Link>
         ))}
+        <span className="w-px bg-gray-200 mx-1" />
+        <Link
+          href="/betting-tips"
+          className="text-xs uppercase tracking-widest border border-gray-200 rounded-full px-4 py-2 text-gray-600 hover:border-black hover:text-black hover:bg-gray-50 transition-colors"
+        >
+          Betting Tips
+        </Link>
+        <Link
+          href="/prediction-market"
+          className="text-xs uppercase tracking-widest border border-gray-200 rounded-full px-4 py-2 text-gray-600 hover:border-black hover:text-black hover:bg-gray-50 transition-colors"
+        >
+          Prediction Market
+        </Link>
       </div>
 
       <div className="grid md:grid-cols-2 gap-x-10 gap-y-10">
