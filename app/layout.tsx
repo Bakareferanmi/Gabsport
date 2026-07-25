@@ -18,14 +18,14 @@ export const metadata = {
   openGraph: {
     title: 'gabsport',
     description: 'Your daily sports coverage, reactions, and analysis.',
-    images: ['/logo.png'],
+    images: ['/og-image.jpg'],
     type: 'website',
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'gabsport',
     description: 'Your daily sports coverage, reactions, and analysis.',
-    images: ['/logo.png'],
+    images: ['/og-image.jpg'],
   },
 };
 
