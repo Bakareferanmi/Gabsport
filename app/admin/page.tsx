@@ -12,14 +12,18 @@ export default function Admin() {
   const [subcategory, setSubcategory] = useState('');
   const [image, setImage] = useState('');
   const [author, setAuthor] = useState('Feranmi Bakare');
+  const [publishAt, setPublishAt] = useState('');
   const [status, setStatus] = useState('');
   const [uploading, setUploading] = useState(false);
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<(Article & { publishAt?: string })[]>([]);
   const contentRef = useRef<HTMLTextAreaElement>(null);
 
   async function loadArticles() {
+    if (!secret) return;
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/articles`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/articles`, {
+        headers: { 'x-admin-secret': secret },
+      });
       const data = await res.json();
       setArticles(Array.isArray(data) ? data : []);
     } catch {
@@ -28,8 +32,9 @@ export default function Admin() {
   }
 
   useEffect(() => {
-    loadArticles();
-  }, []);
+    if (secret) loadArticles();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [secret]);
 
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -97,6 +102,7 @@ export default function Admin() {
           subcategory: category === 'Football' ? subcategory : null,
           image,
           author,
+          publishAt: publishAt ? new Date(publishAt).toISOString() : undefined,
         }),
       });
 
@@ -111,12 +117,14 @@ export default function Admin() {
       }
 
       const data = await res.json();
-      setStatus(`Published: ${data.title}`);
+      const isScheduled = publishAt && new Date(publishAt) > new Date();
+      setStatus(isScheduled ? `Scheduled: ${data.title}` : `Published: ${data.title}`);
       setTitle('');
       setExcerpt('');
       setContent('');
       setImage('');
       setSubcategory('');
+      setPublishAt('');
       loadArticles();
     } catch (err) {
       setStatus(`Network error: ${err instanceof Error ? err.message : String(err)}`);
@@ -150,6 +158,15 @@ export default function Admin() {
     } catch {
       setStatus('Network error while deleting.');
     }
+  }
+
+  function formatScheduleLabel(a: Article & { publishAt?: string }) {
+    if (!a.publishAt) return a.category;
+    const date = new Date(a.publishAt);
+    if (date > new Date()) {
+      return `Scheduled: ${date.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}`;
+    }
+    return a.category;
   }
 
   return (
@@ -251,12 +268,24 @@ export default function Admin() {
           className="w-full border border-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-white rounded-lg px-4 py-3"
         />
 
+        <div>
+          <label className="block text-sm text-gray-500 dark:text-gray-400 mb-2">
+            Publish Date & Time (leave blank to publish immediately)
+          </label>
+          <input
+            type="datetime-local"
+            value={publishAt}
+            onChange={(e) => setPublishAt(e.target.value)}
+            className="w-full border border-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-white rounded-lg px-4 py-3"
+          />
+        </div>
+
         <button
           onClick={handleSubmit}
           disabled={uploading}
           className="w-full bg-black dark:bg-white text-white dark:text-black rounded-lg px-4 py-3 font-medium"
         >
-          Publish
+          {publishAt && new Date(publishAt) > new Date() ? 'Schedule' : 'Publish'}
         </button>
 
         {status && <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">{status}</p>}
@@ -269,7 +298,7 @@ export default function Admin() {
             <div key={a.slug} className="flex items-center justify-between border border-gray-100 dark:border-gray-800 rounded-lg px-4 py-3">
               <div className="min-w-0">
                 <p className="text-sm font-medium truncate dark:text-white">{a.title}</p>
-                <p className="text-xs text-gray-400 dark:text-gray-500">{a.category}</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500">{formatScheduleLabel(a)}</p>
               </div>
               <button
                 onClick={() => handleDelete(a.slug)}
