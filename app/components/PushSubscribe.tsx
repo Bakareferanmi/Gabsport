@@ -17,16 +17,17 @@ export default function PushSubscribe() {
       if (!('serviceWorker' in navigator) || !('PushManager' in window)) return;
 
       const registration = await navigator.serviceWorker.register('/sw.js');
-      const existing = await registration.pushManager.getSubscription();
-      if (existing) return;
+      let subscription = await registration.pushManager.getSubscription();
 
-      const permission = await Notification.requestPermission();
-      if (permission !== 'granted') return;
+      if (!subscription) {
+        const permission = await Notification.requestPermission();
+        if (permission !== 'granted') return;
 
-      const subscription = await registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
-      });
+        subscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
+        });
+      }
 
       await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/subscribe`, {
         method: 'POST',
