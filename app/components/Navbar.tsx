@@ -12,6 +12,9 @@ const menuLinks = [
   { href: '/fixtures', label: 'Fixtures' },
   { href: '/results', label: 'Results' },
   { href: '/table', label: 'League Table' },
+  { href: '/boxing', label: 'Boxing' },
+  { href: '/tennis', label: 'Tennis' },
+  { href: '/formula-1', label: 'Formula 1' },
   { href: '/betting-tips', label: 'Betting Tips' },
   { href: '/prediction-market', label: 'Prediction Market' },
   { href: '/more', label: 'More' },
@@ -53,7 +56,7 @@ export default function Navbar() {
 
       {open && (
         <div className="border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-black">
-          <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-3 text-sm text-gray-600 dark:text-gray-300">
+          <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-3 text-sm text-gray-600 dark:text-gray-300 max-h-[70vh] overflow-y-auto">
             {menuLinks.map((link) => (
               <Link
                 key={link.href}

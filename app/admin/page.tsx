@@ -25,8 +25,14 @@ export default function Admin() {
         headers: { 'x-admin-secret': secret },
       });
       const data = await res.json();
-      setArticles(Array.isArray(data) ? data : []);
-    } catch {
+      if (!Array.isArray(data)) {
+        setStatus(`Failed to load articles: ${JSON.stringify(data)}`);
+        setArticles([]);
+        return;
+      }
+      setArticles(data);
+    } catch (err) {
+      setStatus(`Failed to load articles: ${err instanceof Error ? err.message : String(err)}`);
       setArticles([]);
     }
   }
@@ -221,6 +227,9 @@ export default function Admin() {
         >
           <option value="Football">Football</option>
           <option value="Basketball">Basketball</option>
+          <option value="Boxing">Boxing</option>
+          <option value="Tennis">Tennis</option>
+          <option value="Formula 1">Formula 1</option>
           <option value="Betting Tips">Betting Tips</option>
           <option value="Prediction Market">Prediction Market</option>
           <option value="More">More</option>
