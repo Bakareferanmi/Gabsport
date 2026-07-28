@@ -64,8 +64,8 @@ export default async function ArticlePage({
       <h1 className="text-3xl md:text-4xl font-semibold mt-3 leading-tight dark:text-white">{article.title}</h1>
       <p className="text-sm text-gray-400 dark:text-gray-400 mt-4">{article.author} · {formatDate(article.date)}</p>
 
-      <div className="relative w-full h-72 md:h-96 rounded-lg overflow-hidden my-8">
-        <Image src={article.image} alt={article.title} fill className="object-cover" />
+      <div className="relative w-full h-72 md:h-96 rounded-lg overflow-hidden my-8 bg-gray-100 dark:bg-gray-900">
+        <Image src={article.image} alt={article.title} fill className="object-contain" />
       </div>
 
       <div className="text-gray-700 dark:text-gray-200 leading-relaxed space-y-4">
