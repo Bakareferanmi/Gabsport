@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import ArticleCard from './components/ArticleCard';
 import { Article } from './data/articles';
 
@@ -35,13 +34,12 @@ export default async function Home() {
     <div className="max-w-5xl mx-auto px-6 py-16">
       <section className="mb-20">
         <Link href={`/article/${featured.slug}`} className="group block">
-          <div className="relative w-full h-80 md:h-96 rounded-lg overflow-hidden mb-6 bg-gray-100 dark:bg-gray-900">
-            <Image
+          <div className="relative w-full rounded-lg overflow-hidden mb-6 bg-gray-100 dark:bg-gray-900">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={featured.image}
               alt={featured.title}
-              fill
-              priority
-              className="object-contain group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-auto max-h-[600px] object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </div>
           <span className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500">{featured.category}</span>
