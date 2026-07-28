@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import Image from 'next/image';
 import ArticleCard from './components/ArticleCard';
 import { Article } from './data/articles';
 
@@ -32,11 +34,22 @@ export default async function Home() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
       <section className="mb-20">
-        <span className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500">{featured.category}</span>
-        <h1 className="text-4xl md:text-5xl font-semibold mt-3 leading-tight dark:text-white">
-          {featured.title}
-        </h1>
-        <p className="text-gray-500 dark:text-gray-400 mt-4 max-w-2xl">{featured.excerpt}</p>
+        <Link href={`/article/${featured.slug}`} className="group block">
+          <div className="relative w-full h-80 md:h-96 rounded-lg overflow-hidden mb-6">
+            <Image
+              src={featured.image}
+              alt={featured.title}
+              fill
+              priority
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <span className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500">{featured.category}</span>
+          <h1 className="text-4xl md:text-5xl font-semibold mt-3 leading-tight dark:text-white group-hover:underline">
+            {featured.title}
+          </h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-4 max-w-2xl">{featured.excerpt}</p>
+        </Link>
       </section>
 
       <section>
