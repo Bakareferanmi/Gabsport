@@ -1,4 +1,3 @@
-cat > 'app/article/[slug]/page.tsx' << 'EOF'
 import { Article } from '../../data/articles';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
