@@ -11,7 +11,7 @@ type ArticlesResponse = {
   totalArticles: number;
 };
 
-const PAGE_SIZE = 13; // 1 hero + 12 grid on page 1
+const PAGE_SIZE = 7; // 1 hero + 6 grid on page 1
 
 async function getArticles(page: number): Promise<ArticlesResponse> {
   try {
