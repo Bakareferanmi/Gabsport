@@ -46,18 +46,28 @@ export default function Admin() {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    if (!secret) {
+      setStatus('Enter admin password before uploading an image.');
+      return;
+    }
+
     setUploading(true);
     setStatus('Uploading image...');
     try {
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', 'gabsport_uploads');
+      formData.append('image', file);
 
-      const res = await fetch('https://api.cloudinary.com/v1_1/jhayatelier/image/upload', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/upload-image`, {
         method: 'POST',
+        headers: { 'x-admin-secret': secret },
         body: formData,
       });
 
+      if (res.status === 401) {
+        setStatus('Wrong password.');
+        setUploading(false);
+        return;
+      }
       if (!res.ok) {
         const errText = await res.text();
         setStatus(`Image upload failed: ${res.status} — ${errText}`);
@@ -66,7 +76,7 @@ export default function Admin() {
       }
 
       const data = await res.json();
-      setImage(data.secure_url);
+      setImage(data.url);
       setStatus('Image uploaded.');
     } catch (err) {
       setStatus(`Image upload error: ${err instanceof Error ? err.message : String(err)}`);
