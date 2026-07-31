@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import ArticleCard from './components/ArticleCard';
 import { Article } from './data/articles';
+import { smartCrop } from './lib/cloudinary';
 
 async function getArticles(): Promise<Article[]> {
   try {
@@ -37,9 +38,9 @@ export default async function Home() {
           <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden mb-6 bg-gray-100 dark:bg-gray-900">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={featured.image}
+              src={smartCrop(featured.image, 1200, 640)}
               alt={featured.title}
-              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </div>
           <span className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500">{featured.category}</span>

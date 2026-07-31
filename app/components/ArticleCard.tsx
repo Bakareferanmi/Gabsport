@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Article } from '../data/articles';
+import { smartCrop } from '../lib/cloudinary';
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en-US', {
@@ -13,10 +14,10 @@ export default function ArticleCard({ article }: { article: Article }) {
     <Link href={`/article/${article.slug}`} className="group block border-b border-gray-100 dark:border-gray-800 pb-6">
       <div className="relative w-full h-48 rounded-lg overflow-hidden mb-4 bg-gray-100 dark:bg-gray-900">
         <Image
-          src={article.image}
+          src={smartCrop(article.image, 800, 480)}
           alt={article.title}
           fill
-          className="object-contain group-hover:scale-105 transition-transform duration-300"
+          className="object-cover group-hover:scale-105 transition-transform duration-300"
         />
       </div>
       <span className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500">{article.category}</span>
