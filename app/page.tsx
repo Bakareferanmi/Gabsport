@@ -35,10 +35,10 @@ export default async function Home() {
     <div className="max-w-5xl mx-auto px-6 py-16">
       <section className="mb-20">
         <Link href={`/article/${featured.slug}`} className="group block">
-          <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden mb-6 bg-gray-100 dark:bg-gray-900">
+          <div className="relative w-full h-80 md:h-[28rem] rounded-lg overflow-hidden mb-6 bg-gray-100 dark:bg-gray-900">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={smartCrop(featured.image, 1200, 640)}
+              src={smartCrop(featured.image, 1000, 1000)}
               alt={featured.title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />

@@ -12,9 +12,9 @@ function formatDate(dateStr: string) {
 export default function ArticleCard({ article }: { article: Article }) {
   return (
     <Link href={`/article/${article.slug}`} className="group block border-b border-gray-100 dark:border-gray-800 pb-6">
-      <div className="relative w-full h-48 rounded-lg overflow-hidden mb-4 bg-gray-100 dark:bg-gray-900">
+      <div className="relative w-full h-64 rounded-lg overflow-hidden mb-4 bg-gray-100 dark:bg-gray-900">
         <Image
-          src={smartCrop(article.image, 800, 480)}
+          src={smartCrop(article.image, 700, 700)}
           alt={article.title}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-300"
