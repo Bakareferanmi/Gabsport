@@ -17,7 +17,7 @@ export default function ArticleCard({ article }: { article: Article }) {
           src={smartCrop(article.image, 700, 700)}
           alt={article.title}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
+          className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
         />
       </div>
       <span className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500">{article.category}</span>
