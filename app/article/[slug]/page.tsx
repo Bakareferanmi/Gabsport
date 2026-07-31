@@ -11,7 +11,7 @@ function formatDate(dateStr: string) {
 
 async function getArticle(slug: string): Promise<Article | null> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/articles/${slug}`, {
-    next: { revalidate: 60 },
+    next: { revalidate: 10 },
   });
   if (!res.ok) return null;
   return res.json();
