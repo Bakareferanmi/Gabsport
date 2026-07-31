@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Article } from '../../data/articles';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -63,9 +64,14 @@ export default async function ArticlePage({
       <h1 className="text-3xl md:text-4xl font-semibold mt-3 leading-tight dark:text-white">{article.title}</h1>
       <p className="text-sm text-gray-400 dark:text-gray-400 mt-4">{article.author} · {formatDate(article.date)}</p>
 
-      <div className="relative w-full rounded-lg overflow-hidden my-8 bg-gray-100 dark:bg-gray-900">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={article.image} alt={article.title} className="w-full h-auto max-h-[600px] object-cover" />
+      <div className="relative w-full h-72 md:h-[500px] rounded-lg overflow-hidden my-8 bg-gray-100 dark:bg-gray-900">
+        <Image
+          src={article.image}
+          alt={article.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="object-cover"
+        />
       </div>
 
       <div className="text-gray-700 dark:text-gray-200 leading-relaxed space-y-4">

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import ArticleCard from './components/ArticleCard';
 import Pagination from './components/Pagination';
 import { Article } from './data/articles';
@@ -55,11 +56,13 @@ export default async function Home({
         <section className="mb-20">
           <Link href={`/article/${featured.slug}`} className="group block">
             <div className="relative w-full h-80 md:h-[28rem] rounded-lg overflow-hidden mb-6 bg-gray-100 dark:bg-gray-900">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={smartCrop(featured.image, 1000, 1000)}
                 alt={featured.title}
-                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
               />
             </div>
             <span className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500">{featured.category}</span>
