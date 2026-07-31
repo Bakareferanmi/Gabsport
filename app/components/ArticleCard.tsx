@@ -12,15 +12,6 @@ export default function ArticleCard({ article }: { article: Article }) {
   return (
     <Link href={`/article/${article.slug}`} className="group block border-b border-gray-100 dark:border-gray-800 pb-6">
       <div className="relative w-full h-48 rounded-lg overflow-hidden mb-4 bg-gray-100 dark:bg-gray-900">
-        {/* blurred backdrop fill */}
-        <Image
-          src={article.image}
-          alt=""
-          aria-hidden="true"
-          fill
-          className="object-cover blur-2xl scale-110 opacity-60"
-        />
-        {/* full uncropped image on top */}
         <Image
           src={article.image}
           alt={article.title}

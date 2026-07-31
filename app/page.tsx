@@ -35,20 +35,11 @@ export default async function Home() {
       <section className="mb-20">
         <Link href={`/article/${featured.slug}`} className="group block">
           <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden mb-6 bg-gray-100 dark:bg-gray-900">
-            {/* blurred backdrop fill */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={featured.image}
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-60"
-            />
-            {/* full uncropped image on top */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={featured.image}
               alt={featured.title}
-              className="relative w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
             />
           </div>
           <span className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500">{featured.category}</span>
