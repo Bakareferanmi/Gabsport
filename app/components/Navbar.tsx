@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 const menuLinks = [
@@ -46,6 +46,9 @@ export default function Navbar() {
             className={`transition-colors ${pathname.startsWith('/basketball') ? 'text-black dark:text-white font-medium' : 'hover:text-black dark:hover:text-white'}`}
           >
             Basketball
+          </Link>
+          <Link href="/search" aria-label="Search">
+            <Search size={20} />
           </Link>
           <ThemeToggle />
           <button onClick={() => setOpen(!open)} aria-label="Menu">
