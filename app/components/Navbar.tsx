@@ -8,6 +8,8 @@ import { Menu, X, Search } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 const menuLinks = [
+  { href: '/football', label: 'Football' },
+  { href: '/basketball', label: 'Basketball' },
   { href: '/live-scores', label: 'Live Scores' },
   { href: '/fixtures', label: 'Fixtures' },
   { href: '/results', label: 'Results' },
@@ -34,19 +36,7 @@ export default function Navbar() {
           <Image src="/logo.png" alt="gabsport" width={64} height={64} className="object-contain dark:hidden" />
           <Image src="/logo-white.png" alt="gabsport" width={64} height={64} className="object-contain hidden dark:block" />
         </Link>
-        <div className="flex items-center gap-6 text-sm text-gray-600 dark:text-gray-300">
-          <Link
-            href="/football"
-            className={`transition-colors ${pathname.startsWith('/football') ? 'text-black dark:text-white font-medium' : 'hover:text-black dark:hover:text-white'}`}
-          >
-            Football
-          </Link>
-          <Link
-            href="/basketball"
-            className={`transition-colors ${pathname.startsWith('/basketball') ? 'text-black dark:text-white font-medium' : 'hover:text-black dark:hover:text-white'}`}
-          >
-            Basketball
-          </Link>
+        <div className="flex items-center gap-5 text-gray-600 dark:text-gray-300">
           <Link href="/search" aria-label="Search">
             <Search size={20} />
           </Link>
